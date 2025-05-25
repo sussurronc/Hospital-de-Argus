@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hospital Interativo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 2em;
+      background: #f9f9f9;
+      color: #222;
+    }
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 0.6em 1.2em;
+      margin: 0.3em 0;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    h2 {
+      font-size: 1.4em;
+      margin-bottom: 0.6em;
+    }
+  </style>
+</head>
+<body>
+  <div id="story">Carregando...</div>
+  
+<script>
+  const passages = {
+  "Hall de Entrada": "\nVoc\u00ea est\u00e1 em um hospital aparentemente perfeito visto de fora. Por\u00e9m, ao entrar, se depara com luzes t\u00e3o fortes que precisa fechar os olhos por, no m\u00ednimo, cinco segundos.<br>\nAs paredes s\u00e3o brancas \u2014 t\u00e3o brancas que lembram a neve, aquela que voc\u00ea n\u00e3o v\u00ea h\u00e1 tanto tempo.<br>\n\u00c0 sua frente, h\u00e1 a recep\u00e7\u00e3o, onde est\u00e1 uma recepcionista mexendo em seu computador.<br>\n\u00c0 sua esquerda, um corredor iluminado se estende, com v\u00e1rios bancos de espera.<br>\n\u00c0 sua direita, outro corredor igualmente iluminado, mas de onde se ouvem choros e gritos abafados.<br><br>\nVoc\u00ea deseja falar com a recepcionista, ir para o caminho \u00e0 sua esquerda ou ir para o caminho \u00e0 sua direita?<br><br>\n<button onclick=\"goToPassage('Recepcionista')\">Recepcionista</button>\n<button onclick=\"goToPassage('Esquerda')\">Esquerda</button>\n<button onclick=\"goToPassage('Direita')\">Direita</button>\n",
+  "Direita": "\nVoc\u00ea segue pelo caminho da direita sem sequer se dirigir \u00e0 recepcionista.<br>\nCaminha com passos largos e apressados, com medo de ser pega. Por\u00e9m, ao relaxar por um breve instante, achando que j\u00e1 havia escapado, uma m\u00e3o toca seu ombro.<br><br>\n\u2014 O que uma mocinha t\u00e3o linda faz em um lugar onde n\u00e3o deveria estar?<br><br>\nEra a recepcionista, agora com um olhar completamente s\u00e9rio.<br>\nE essa foi a \u00faltima coisa que voc\u00ea viu.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "Esquerda": "\nVoc\u00ea se dirige rapidamente para a esquerda, com medo de ser pega. Consegue avan\u00e7ar bem, at\u00e9 que toda a atmosfera agrad\u00e1vel se esgota.<br>\nAs luzes come\u00e7am a piscar sem parar, o ch\u00e3o est\u00e1 t\u00e3o sujo que seus sapatos grudam a cada passo, e os gritos... s\u00e3o atormentadores.<br><br>\nNa tentativa de escapar daquela sensa\u00e7\u00e3o perturbadora, voc\u00ea entra em uma sala arrumada. Uma mesa bagun\u00e7ada com uma caneca derramada chama aten\u00e7\u00e3o.<br>\nVoc\u00ea abre um arm\u00e1rio e encontra um cofre com uma senha de quatro d\u00edgitos.<br>\nQuando se aproxima para examin\u00e1-lo, ouve a porta sendo escancarada com uma for\u00e7a tremenda.<br><br>\nE, a partir da\u00ed, n\u00e3o se lembra de mais nada.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "Recepcionista": "\nVoc\u00ea decide falar com a recepcionista. Ela sorri exageradamente.<br><br>\n\u2014 Ol\u00e1! Voc\u00ea est\u00e1 no Hospital Municipal de Argus! Como posso ajud\u00e1-la?<br><br>\nVoc\u00ea responde:<br><br>\n\u2014 Ol\u00e1, estou procurando a minha m\u00e3e. O nome dela \u00e9 Matilde S\u00e9rgio.<br><br>\n\u2014 Claro. Ela foi hospedada ontem, certo? S\u00f3 me diga seu nome, e eu a levo at\u00e9 l\u00e1.<br><br>\n<button onclick=\"goToPassage('Elisa')\">Elisa</button>\n<button onclick=\"goToPassage('Luana')\">Luana</button>\n<button onclick=\"goToPassage('Ana')\">Ana</button>\n",
+  "Elisa": "\n\u2014 Esse nome n\u00e3o consta nos dados da paciente, sinto muito...<br><br>\nEla diz isso enquanto seu sorriso desaparece drasticamente e aperta um bot\u00e3o sob a mesa.<br>\nSirenes soam. Sua vis\u00e3o escurece.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "Ana": "\n\u2014 Esse nome n\u00e3o consta nos dados da paciente, sinto muito...<br><br>\nEla diz isso enquanto seu sorriso desaparece drasticamente e aperta um bot\u00e3o sob a mesa.<br>\nSirenes soam. Sua vis\u00e3o escurece.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "Luana": "\nA recepcionista a olha como se finalmente reconhecesse voc\u00ea.<br><br>\n\u2014 Claro Luana, pode me seguir por aqui.<br><br>\nQuando voc\u00ea j\u00e1 estava entrando no corredor, decide virar para tr\u00e1s. Voc\u00ea percebe que o corredor \u00e0 direita era uma rampa discreta, imposs\u00edvel de ver de perto.<br><br>\nVoc\u00ea pergunta para a recepcionista?<br><br>\n<button onclick=\"goToPassage('Sim')\">Sim</button>\n<button onclick=\"goToPassage('N\u00e3o')\">N\u00e3o</button>\n",
+  "Sim": "\n\u2014 O que tem no outro corredor?<br><br>\n\u2014 \u00c9 melhor voc\u00ea n\u00e3o ser curiosa. Ele n\u00e3o gosta que descubram nada.<br><br>\n\u2014 Quem \u00e9 ele?<br><br>\n\u2014 Eu sou uma louca. E j\u00e1 que voc\u00ea quer tanto saber, vou te dar seu desejo final: Experimentos.<br><br>\nSua vis\u00e3o escurece.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "N\u00e3o": "\nVoc\u00ea decide n\u00e3o perguntar. Para quebrar o clima tenso, comenta sobre o hospital.<br><br>\n\u2014 Ah, sim. Esse hospital \u00e9 o principal da cidade... gra\u00e7as ao nosso incr\u00edvel sistema de vigil\u00e2ncia.<br><br>\n\u2014 Incr\u00edvel mesmo...<br>\n\u2014 E isso tudo \u00e9 gra\u00e7as \u00e0 Argus. Mas enfim, chegamos ao quarto da sua m\u00e3e.<br><br>\nVoc\u00ea pergunta sobre Argus?<br><br>\n<button onclick=\"goToPassage('Pergunte')\">Pergunte</button>\n<button onclick=\"goToPassage('N\u00e3o pergunta')\">N\u00e3o pergunta</button>\n",
+  "Pergunte": "\n\u2014 Ah, eu disse isso? Perd\u00e3o... Me confundi com os corredores e com as palavras.<br>\n(risada sem gra\u00e7a)<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "N\u00e3o pergunta": "\nVoc\u00ea entra no quarto. Sua m\u00e3e est\u00e1 inconsciente.<br><br>\nVoc\u00ea abre a janela, coloca uma flor ao lado... e ent\u00e3o uma m\u00e3o segura a sua.<br><br>\n\u2014 Eles conseguem ver tudo. Tem uma c\u00e2mera ali. Guarde esse segredo. N\u00e3o confie em ningu\u00e9m.<br><br>\n\u2014 V\u00e1, antes que eles cheguem.<br><br>\nO que voc\u00ea faz?<br><br>\n<button onclick=\"goToPassage('Saio do quarto')\">Saio do quarto</button>\n<button onclick=\"goToPassage('Fico com ela')\">Fico com ela, apesar de sua relut\u00e2ncia</button>\n",
+  "Fico com ela": "\nVoc\u00ea decide ficar com sua m\u00e3e.<br><br>\nA n\u00e9voa roxa invade o quarto. Sua vis\u00e3o falha.<br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "Saio do quarto": "\nVoc\u00ea corre de volta ao hall. A recepcionista sumiu.<br><br>\nSegue para o outro corredor. Tudo vai piorando.<br>\nEntra numa sala. Encontra um cofre com senha.<br><br>\nQual senha voc\u00ea digita?<br><br>\n<button onclick=\"goToPassage('0503')\">0503</button>\n<button onclick=\"goToPassage('0826')\">0826</button>\n<button onclick=\"goToPassage('0317')\">0317</button>\n",
+  "0503": "\nO cofre se abre. Dentro, h\u00e1 apenas um bilhete dobrado cuidadosamente.<br><br>\nVoc\u00ea o pega, abre devagar\u2026 e l\u00ea:<br><br>\n<strong>\"Parab\u00e9ns. Voc\u00ea chegou onde poucos chegam.<br>\nO segredo est\u00e1 no uhiohar.<br>\nProcure no hvshokr, pois \u00e9 onde ele mais se esconde.\"</strong><br><br>\nAo olhar ao redor, voc\u00ea percebe\u2026 <strong>n\u00e3o h\u00e1 nenhum uhiohar.</strong><br><br>\nApenas uma c\u00e2mera. Bem no alto.<br><br>\nEnt\u00e3o, por que voc\u00ea ainda sente que tem algo\u2026 <strong>te olhando por tr\u00e1s do ylgur?</strong><br><br>\n<strong>FIM DE JOGO</strong>\n",
+  "0826": "Senha incorreta.<br><br><strong>FIM DE JOGO</strong>",
+  "0317": "\nO cofre est\u00e1 aberto. Voc\u00ea encontra um papel:<br><br>\n\"Se voc\u00ea est\u00e1 lendo isso, chegou longe demais. Argus nunca foi apenas uma cidade. Ela \u00e9 viva.<br>\nDizem que Argus \u2014 o da mitologia \u2014 tinha cem olhos e nunca dormia. Agora, ele est\u00e1 acordado.<br><br>\nA SRUWD VHUPHOKD n\u00e3o \u00e9 uma SRUWD comum. Ela pode estar em qualquer lugar.<br>\nSe quiser saber mais, ter\u00e1 que procurar fora daqui.<br>\nA pr\u00f3xima pista... est\u00e1 onde todos podem ver, mas ningu\u00e9m repara.\"<br><br>\n<strong>FIM DE JOGO?</strong>\n"
+};
+  function goToPassage(name) {
+    const el = document.getElementById("story");
+    if (passages[name]) {
+      el.innerHTML = '<h2>' + name + '</h2>' + passages[name];
+    } else {
+      el.innerHTML = '<p>Passagem "' + name + '" não encontrada.</p>';
+    }
+  }
+  window.onload = function () {
+    goToPassage("Hall de Entrada");
+  };
+</script>
+
+</body>
+</html>
